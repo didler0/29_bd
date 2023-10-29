@@ -93,6 +93,8 @@ class App(customtkinter.CTk):
 
                 self.AddData=customtkinter.CTkButton(master=self.frame_right,text="Добавить",command=lambda:self.AdddData(1))
                 self.AddData.grid(row=7,column=0,pady=10,padx=10)
+                self.UpdateData=customtkinter.CTkButton(master=self.frame_right,text="Сохранить",command=lambda:self.UpdateDatap(1))
+                self.UpdateData.grid(row=7,column=1,pady=10,padx=10)
                 self.DelData=customtkinter.CTkButton(master=self.frame_right,text="Удалить",command=lambda:self.DellData(1))
                 self.DelData.grid(row=7,column=2,pady=10,padx=10)
 
@@ -132,6 +134,8 @@ class App(customtkinter.CTk):
 
                 self.AddData=customtkinter.CTkButton(master=self.frame_right,text="Добавить",command=lambda:self.AdddData(2))
                 self.AddData.grid(row=5,column=0,pady=10,padx=10)
+                self.UpdateData=customtkinter.CTkButton(master=self.frame_right,text="Сохранить",command=lambda:self.UpdateDatap(2))
+                self.UpdateData.grid(row=5,column=1,pady=10,padx=10)
                 self.DelData=customtkinter.CTkButton(master=self.frame_right,text="Удалить",command=lambda:self.DellData(2))
                 self.DelData.grid(row=5,column=2,pady=10,padx=10)
 
@@ -177,6 +181,8 @@ class App(customtkinter.CTk):
                 
                 self.AddData=customtkinter.CTkButton(master=self.frame_right,text="Добавить",command=lambda:self.AdddData(3))
                 self.AddData.grid(row=6,column=0,pady=10,padx=10)
+                self.UpdateData=customtkinter.CTkButton(master=self.frame_right,text="Сохранить",command=lambda:self.UpdateDatap(3))
+                self.UpdateData.grid(row=6,column=1,pady=10,padx=10)
                 self.DelData=customtkinter.CTkButton(master=self.frame_right,text="Удалить",command=lambda:self.DellData(3))
                 self.DelData.grid(row=6,column=2,pady=10,padx=10)
 
@@ -229,6 +235,8 @@ class App(customtkinter.CTk):
 
                 self.AddData=customtkinter.CTkButton(master=self.frame_right,text="Добавить",command=lambda:self.AdddData(4))
                 self.AddData.grid(row=7,column=0,pady=10,padx=10)
+                self.UpdateData=customtkinter.CTkButton(master=self.frame_right,text="Сохранить",command=lambda:self.UpdateDatap(4))
+                self.UpdateData.grid(row=7,column=1,pady=10,padx=10)
                 self.DelData=customtkinter.CTkButton(master=self.frame_right,text="Удалить",command=lambda:self.DellData(4))
                 self.DelData.grid(row=7,column=2,pady=10,padx=10)
 
@@ -296,6 +304,8 @@ class App(customtkinter.CTk):
 
                 self.AddData=customtkinter.CTkButton(master=self.frame_right,text="Добавить",command=lambda:self.AdddData(5))
                 self.AddData.grid(row=9,column=0,pady=10,padx=10)
+                self.UpdateData=customtkinter.CTkButton(master=self.frame_right,text="Сохранить",command=lambda:self.UpdateDatap(5))
+                self.UpdateData.grid(row=9,column=1,pady=10,padx=10)
                 self.DelData=customtkinter.CTkButton(master=self.frame_right,text="Удалить",command=lambda:self.DellData(5))
                 self.DelData.grid(row=9,column=2,pady=10,padx=10)
 
@@ -490,6 +500,55 @@ class App(customtkinter.CTk):
                 numbofDay=self.NumberOfDays  .get()               
 
                 db_adapter.SQL.insert_trip(cliID,routeId,departDate,arrivalDate,discountId,numbofDay)
+                print("ura")
+                self.OutputData(5)
+    def UpdateDatap(self,key):
+        val=self.ComBobChVal.get()
+        val=val.split(' ')
+        val=val[0]
+#1
+        match key:
+            case 1:
+                ph=self.PhoneNumb.get()
+                fl=self.FirstName.get()
+                ln=self.LastName.get()
+                mn=self.MiddleName.get()
+                adr=self.Adress.get()
+
+                db_adapter.SQL.update_client(val, ph, fl, ln, mn, adr)
+                print("ura")
+                self.OutputData(1)
+            case 2:
+                percofdesc=self.PercentOfDiscount.get()
+                numboftour=self.NumberOfTours.get()
+                db_adapter.SQL.update_discount(val, percofdesc, numboftour)
+                print("ura")
+                self.OutputData(2)
+            case 3:
+                hotphone=self.HotelPhoneNumb.get()
+                countr=self.Country.get()
+                hoteladr=self.HotelAdress.get()
+                db_adapter.SQL.update_hotel_by_id(val,hotphone,countr,hoteladr)
+                print("ura")
+                self.OutputData(3)
+            case 4:
+
+                clasOFH=self.ClassOfHotel.get()
+                HootID=self.HotelId.get()
+                TypeOf=self.TypeOfClimate.get()
+                Pri=self.Price.get()      
+                db_adapter.SQL.update_route_by_id(val,clasOFH,HootID,TypeOf,Pri)
+                print("ura")
+                self.OutputData(4)
+            case 5:
+                idd=self.id.get() 
+                cliID=self.ClientId.get() 
+                routeId=self.RouteId.get() 
+                departDate=self.DepartureDate.get() 
+                arrivalDate=self.ArrivalDate.get() 
+                discountId=self.DiscountId.get() 
+                numbofDay=self.NumberOfDays  .get()               
+                db_adapter.SQL.update_trip(val,cliID,routeId,departDate,arrivalDate,discountId,numbofDay)
                 print("ura")
                 self.OutputData(5)
 
