@@ -150,50 +150,43 @@ class SQL:
         cursor = connection.cursor()
         cursor.execute("INSERT INTO [Trip] (ClientId, RouteId, DepartureDate, ArrivalDate, DiscountId, NumberOfDays) VALUES (?, ?, ?, ?, ?, ?)", client_id, route_id, departure_date, arrival_date, discount_id, number_of_days)
         connection.commit()
-        connection.close()
-
-
-
-    @staticmethod
-    def update_client(client_id, phone_number, first_name, last_name, middle_name, address):
+        connection.close()    @staticmethod
+    def update_client(phone_number, new_first_name, new_last_name, new_middle_name, new_address):
         connection = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER=DIDLERPC\SQLEXPRESS;DATABASE=TravelAgencyDB_zapros;Trusted_Connection=yes;')
         cursor = connection.cursor()
-        cursor.execute("UPDATE [Client] SET PhoneNumber = ?, FirstName = ?, LastName = ?, MiddleName = ?, Address = ? WHERE id = ?", phone_number, first_name, last_name, middle_name, address, client_id)
+        cursor.execute("UPDATE [Client] SET FirstName = ?, LastName = ?, MiddleName = ?, Address = ? WHERE PhoneNumber = ?", new_first_name, new_last_name, new_middle_name, new_address, phone_number)
         connection.commit()
         connection.close()
 
-    @staticmethod    
-    def update_discount(discount_id, new_discount_percentage, new_number_of_tours):
-       connection = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER=DIDLERPC\SQLEXPRESS;DATABASE=TravelAgencyDB_zapros;Trusted_Connection=yes;')
-       cursor = connection.cursor()
-       cursor.execute("UPDATE [Discount] SET DiscountPercentage = ?, NumberOfTours = ? WHERE id = ?", new_discount_percentage, new_number_of_tours, discount_id)
-       connection.commit()
-       connection.close()
-    
     @staticmethod
-    def update_hotel_by_id(hotel_id, phone_number, country, address):
+    def update_hotel(hotel_phone_number, new_country, new_address):
         connection = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER=DIDLERPC\SQLEXPRESS;DATABASE=TravelAgencyDB_zapros;Trusted_Connection=yes;')
         cursor = connection.cursor()
-        cursor.execute("UPDATE [Hotel] SET HotelPhoneNumber = ?, Country = ?, Address = ? WHERE Id = ?", phone_number, country, address, hotel_id)
+        cursor.execute("UPDATE [Hotel] SET Country = ?, Address = ? WHERE HotelPhoneNumber = ?", new_country, new_address, hotel_phone_number)
         connection.commit()
         connection.close()
         
     @staticmethod
-    def update_route_by_id(route_id, hotel_class,HotelId, climate_type,Price):
+    def update_route(hotel_id, new_hotel_class, new_climate_type):
         connection = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER=DIDLERPC\SQLEXPRESS;DATABASE=TravelAgencyDB_zapros;Trusted_Connection=yes;')
         cursor = connection.cursor()
-        cursor.execute("UPDATE [Route] SET HotelClass = ?, HotelId = ?, ClimateType = ?, Price = ?  WHERE Id = ?", hotel_class,HotelId, climate_type,Price, route_id)
+        cursor.execute("UPDATE [Route] SET HotelClass = ?, ClimateType = ? WHERE HotelId = ?", new_hotel_class, new_climate_type, hotel_id)
         connection.commit()
         connection.close()
     @staticmethod
-
+    def update_discount(discount_id, new_discount_percentage, new_number_of_tours):
+       connection = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER=DIDLERPC\SQLEXPRESS;DATABASE=TravelAgencyDB_zapros;Trusted_Connection=yes;')
+       cursor = connection.cursor()
+       cursor.execute("UPDATE [Discount] SET DiscountPercentage = ?, NumberOfTours = ? WHERE DiscountId = ?", new_discount_percentage, new_number_of_tours, discount_id)
+       connection.commit()
+       connection.close()
     
     
     @staticmethod
     def update_trip(trip_id, new_client_id, new_route_id, new_departure_date, new_arrival_date, new_discount_id, new_number_of_days):
         connection = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER=DIDLERPC\SQLEXPRESS;DATABASE=TravelAgencyDB_zapros;Trusted_Connection=yes;')
         cursor = connection.cursor()
-        cursor.execute("UPDATE [Trip] SET ClientId = ?, RouteId = ?, DepartureDate = ?, ArrivalDate = ?, DiscountId = ?, NumberOfDays = ? WHERE Id = ?", new_client_id, new_route_id, new_departure_date, new_arrival_date, new_discount_id, new_number_of_days, trip_id)
+        cursor.execute("UPDATE [Trip] SET ClientId = ?, RouteId = ?, DepartureDate = ?, ArrivalDate = ?, DiscountId = ?, NumberOfDays = ? WHERE TripId = ?", new_client_id, new_route_id, new_departure_date, new_arrival_date, new_discount_id, new_number_of_days, trip_id)
         connection.commit()
         connection.close()
     

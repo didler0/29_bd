@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Display</title>
+</head>
+<body>
+    <h1>Data Display</h1>
+
+    <h2>Clients</h2>
+    <table>
+        <tr>
+            {% for column_name in clients_column_names %}
+                <th>{{ column_name }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in clients_data %}
+            <tr>
+                {% for value in row %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Hotels</h2>
+    <table>
+        <tr>
+            {% for column_name in hotels_column_names %}
+                <th>{{ column_name }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in hotels_data %}
+            <tr>
+                {% for value in row %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Routes</h2>
+    <table>
+        <tr>
+            {% for column_name in routes_column_names %}
+                <th>{{ column_name }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in routes_data %}
+            <tr>
+                {% for value in row %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Discount</h2>
+    <table>
+        <tr>
+            {% for column_name in discounts_column_names %}
+                <th>{{ column_name }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in routes_data %}
+            <tr>
+                {% for value in row %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Trip</h2>
+    <table>
+        <tr>
+            {% for column_name in trips_column_names %}
+                <th>{{ column_name }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in routes_data %}
+            <tr>
+                {% for value in row %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -6,10 +6,10 @@ customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 
-#31 таблична форма: сортировка фильтр поиск
-#32 отчёты диаграммки (репорт)
-#33 экспорт в эксель
-#34 вытянуть в html вывести 
+#31 таблична форма: сортировка фильтр поискda+
+#32 отчёты диаграммки (репорт) da+
+#33 экспорт в эксель - 
+#34 вытянуть в html вывести -
 
 
 class App(customtkinter.CTk):
